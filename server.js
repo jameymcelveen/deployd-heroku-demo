@@ -9,11 +9,9 @@ var dbUri = process.env.MONGOHQ_URL
     || process.env.MONGOLAB_URI
     || 'mongodb://localhost:27017/deployd';
 
-console.log('===== CONFIGURATION ==============================');
-console.log('- PORT: ', serverPort);
-console.log('- NODE_ENV: ', nodeEnv);
-console.log('- DB_URI: ', dbUri);
-console.log('==================================================');
+console.log('PORT: ', serverPort);
+console.log('NODE_ENV: ', nodeEnv);
+console.log('DB_URI: ', dbUri);
 
 // setup express
 var app = exports.app = express();
