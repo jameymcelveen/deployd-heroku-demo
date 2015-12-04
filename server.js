@@ -5,6 +5,15 @@ var http = require('http');
 
 var serverPort = process.env.PORT || 3000;
 var nodeEnv = process.env.NODE_ENV || 'development';
+var dbUri = process.env.MONGOHQ_URL
+    || process.env.MONGOLAB_URI
+    || 'mongodb://localhost:27017/deployd';
+
+console.log('===== CONFIGURATION ==============================');
+console.log('- PORT: ', serverPort);
+console.log('- NODE_ENV: ', nodeEnv);
+console.log('- DB_URI: ', dbUri);
+console.log('==================================================');
 
 // setup express
 var app = exports.app = express();
@@ -19,9 +28,7 @@ app.get('/hello-express', function (req, res) {
 require('deployd').attach(server, {
   env: nodeEnv,
   db: {
-    connectionString: process.env.MONGOHQ_URL
-                        || process.env.MONGOLAB_URI
-                        || 'mongodb://localhost:27017/deployd'
+    connectionString: dbUri
   }
 });
 
